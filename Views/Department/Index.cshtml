@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication2.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-primary">Create New Department</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Create", new { id=item.ID,item.DepartmentName },new { @class = "btn btn-success" })|
+                @Html.ActionLink("Delete", "DeleteDep", new { item.ID }, new {@class="btn btn-danger",onclick="return confirm('Do you want to delete department')" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
